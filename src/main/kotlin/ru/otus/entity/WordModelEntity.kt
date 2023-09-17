@@ -1,19 +1,24 @@
 package ru.otus.entity
 
-import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import org.hibernate.Hibernate
 import ru.otus.dto.WordModel
+import ru.otus.enumeration.WordType
 
 @Entity
 data class WordModelEntity(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long,
-    @Column(columnDefinition = "TEXT")
     val title: String,
-    val likedByMe: Boolean = false
+    val wordDescription: String,
+    var likedByMe: Boolean = false,
+    val image: String,
+    @Enumerated(EnumType.STRING)
+    val wordType: WordType = WordType.NONE
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -33,14 +38,18 @@ data class WordModelEntity(
     fun toDto() = WordModel(
         id,
         title,
-        likedByMe
+        wordDescription,
+        likedByMe,
+        image
     )
 
     companion object {
         fun fromDto(dto: WordModel) = WordModelEntity(
             dto.id,
             dto.title,
-            dto.likedByMe
+            dto.wordDescription,
+            dto.likedByMe,
+            dto.image
         )
     }
 }

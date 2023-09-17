@@ -23,10 +23,11 @@ dependencies {
     implementation("com.github.javafaker:javafaker:1.0.2") {
         exclude(module = "snakeyaml")
     }
+    implementation ("org.liquibase:liquibase-core:4.0.0")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.apache.tika:tika-core:2.9.0")
-    runtimeOnly("com.h2database:h2")
+    implementation("com.h2database:h2")
     implementation("org.bouncycastle:bctls-jdk15on:1.70")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")

@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class NMediaApplication
+class SlangDictionaryApplication
 
 fun main(args: Array<String>) {
-    runApplication<NMediaApplication>(*args)
+    runApplication<SlangDictionaryApplication>(*args)
 }

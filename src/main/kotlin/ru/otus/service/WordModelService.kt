@@ -13,13 +13,9 @@ class WordModelService(
     private val wordModelEntityRepository: WordModelEntityRepository
 ) {
 
-    fun getAllByType(wordType: String): Map<Long, String> {
-        val words = wordModelEntityRepository.findAll().filter { it.wordType == WordType.valueOf(wordType) }
-        val idsToTitles = mutableMapOf<Long, String>()
-        words.forEach {
-            idsToTitles.put(it.id, it.title)
-        }
-        return idsToTitles
+    fun getAllByType(wordType: String): List<WordModel> {
+        return wordModelEntityRepository.findAll().filter { it.wordType == WordType.valueOf(wordType) }
+            .map { it.toDto() }
     }
 
     fun getAll(): List<WordModel> {
